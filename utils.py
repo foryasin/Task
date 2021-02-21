@@ -10,14 +10,11 @@ soup = BeautifulSoup(r.content, features="html.parser")
 
 # We get the words within paragraphs
 text_p = [''.join(s.findAll(text=True)) for s in soup.findAll('p')]
-c_p = Counter((x.rstrip(punctuation).lower() for y in text_p for x in y.split()))
+c_p = Counter((x.strip(punctuation).lower() for y in text_p for x in y.split()))
 
-# We get the words within divs
-text_div = [''.join(s.find_all(text=True))for s in soup.findAll('div')]
-c_div = Counter((x.rstrip(punctuation).lower() for y in text_div for x in y.split()))
 
 # We sum the two counter and get a list with words count from most to less common
-total = c_div + c_p
+total = c_p
 
 
 def count_total():
